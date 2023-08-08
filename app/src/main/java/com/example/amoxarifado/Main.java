@@ -12,12 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Main extends AppCompatActivity {
 
@@ -85,7 +83,7 @@ public class Main extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),
                                                 "Administrador logado",
                                                 Toast.LENGTH_LONG).show();
-                                        Intent i = new Intent(getApplicationContext(), HomeUser.class);
+                                        Intent i = new Intent(Main.this, HomeAdm.class);
                                         startActivity(i);
                                     } else {
                                         // Usuário é do tipo 'usuário'
@@ -93,7 +91,7 @@ public class Main extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),
                                                 "Usuário logado",
                                                 Toast.LENGTH_LONG).show();
-                                        Intent i = new Intent(getApplicationContext(), HomeUser.class);
+                                        Intent i = new Intent(Main.this, HomeUser.class);
                                         startActivity(i);
                                     }
                                 }
@@ -148,19 +146,19 @@ public class Main extends AppCompatActivity {
         startActivity(intent);
 
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        Log.d("user", String.valueOf(currentUser));
-
-        if (currentUser != null) {
-            // Se já houver um usuário logado, redireciona para a tela Home
-            Intent intent = new Intent(getApplicationContext(), HomeAdm.class);
-            startActivity(intent);
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        Log.d("user", String.valueOf(currentUser));
+//
+//        if (currentUser != null) {
+//             Se já houver um usuário logado, redireciona para a tela Home
+//            Intent intent = new Intent(getApplicationContext(), HomeAdm.class);
+//            startActivity(intent);
+//        }
+//    }
 
 }

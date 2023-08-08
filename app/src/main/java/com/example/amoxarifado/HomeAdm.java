@@ -143,7 +143,7 @@ public class HomeAdm extends AppCompatActivity {
     public void btnSair(View view){
         Intent intent = new Intent(getApplicationContext(), Main.class);
         startActivity(intent);
-        FirebaseAuth.getInstance().signOut();
+
 
     }
 }

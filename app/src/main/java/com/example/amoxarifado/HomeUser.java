@@ -68,7 +68,7 @@ public class HomeUser extends AppCompatActivity {
                         dados.put("Quantidade", quantidade.get(position));
 
 
-                        Intent intent = new Intent(getApplicationContext(), DadosAdm.class);
+                        Intent intent = new Intent(getApplicationContext(), DadosUser.class);
                         startActivity(intent);
                     }
                 }
@@ -80,18 +80,23 @@ public class HomeUser extends AppCompatActivity {
 
     private void pegarChaves() {
 
-        dadosRef.addValueEventListener(new ValueEventListener() {
+        myRef = database.getReference("Item/" );
+
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String valor = snapshot.getValue(String.class);
+                for (DataSnapshot key : snapshot.getChildren()) {
+                    String nome = key.getKey();
+                    nomes.add(nome);
 
-                if (campos.equals("Quantidade")){
-                    quantidade.add(valor);
-                }else{
-                    Id.add(valor);
+                    for (String campo : campos) {
+                        dadosRef = database.getReference("Item/"
+                                + nome + "/" + campo + "/");
+
+                        pegarDados(campo);
+                    }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -99,6 +104,7 @@ public class HomeUser extends AppCompatActivity {
             }
         });
     }
+
 
     private void pegarDados(String campo){
         dadosRef.addValueEventListener(new ValueEventListener() {
@@ -135,7 +141,7 @@ public class HomeUser extends AppCompatActivity {
     public void btnSair(View view){
         Intent intent = new Intent(getApplicationContext(), Main.class);
         startActivity(intent);
-        FirebaseAuth.getInstance().signOut();
+
 
     }
 }
