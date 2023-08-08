@@ -49,7 +49,7 @@ public class HomeUser extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Adapyter adapter = new Adapyter(getApplicationContext(),nomes,quantidade, Id);
+                Adapyter adapter = new Adapyter(getApplicationContext(),nomes,quantidade,Id);
                 list.setAdapter(adapter);
 
 
@@ -66,7 +66,6 @@ public class HomeUser extends AppCompatActivity {
                         dados.put("Nome", nomes.get(position));
                         dados.put("ID", Id.get(position));
                         dados.put("Quantidade", quantidade.get(position));
-
 
                         Intent intent = new Intent(getApplicationContext(), DadosUser.class);
                         startActivity(intent);
