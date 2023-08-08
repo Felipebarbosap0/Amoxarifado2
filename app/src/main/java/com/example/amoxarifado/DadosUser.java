@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class DadosUser extends AppCompatActivity {
     Map<String, String> dadosContatos; // Declaração de uma variável do tipo Map para armazenar os dados do contato
-    TextView NomeUser, IdUser, QuantUser, QuantInser; // Declaração das variáveis TextView para exibir os dados do contato
+    TextView NomeUser, IdUser; // Declaração das variáveis TextView para exibir os dados do contato
     FirebaseAuth mAuth; // Variável para autenticação do Firebase
     FirebaseDatabase database; // Variável para o banco de dados do Firebase
 
@@ -32,15 +32,13 @@ public class DadosUser extends AppCompatActivity {
     private void mostrarContato() {
         NomeUser.setText(dadosContatos.get("Nome")); // Define o nome do contato no TextView correspondente
         IdUser.setText(dadosContatos.get("ID")); // Define o ID do contato no TextView correspondente
-        QuantUser.setText(dadosContatos.get("Quantidade")); // Define a quantidade do contato no TextView correspondente
+
     }
 
     private void iniciarComponentes() {
         dadosContatos = HomeUser.dados; // Obtém os dados do contato da tela HomeUser
         NomeUser = findViewById(R.id.tvNome); // Obtém a referência do TextView para o nome do contato
-        QuantUser = findViewById(R.id.QuantUser); // Obtém a referência do TextView para a quantidade do contato
         IdUser = findViewById(R.id.tvId); // Obtém a referência do TextView para o ID do contato
-        QuantInser = findViewById(R.id.QuantInser); // Obtém a referência do TextView para a quantidade inserida
         mAuth = FirebaseAuth.getInstance(); // Inicializa o Firebase Authentication
         database = FirebaseDatabase.getInstance(); // Inicializa o Firebase Database
     }

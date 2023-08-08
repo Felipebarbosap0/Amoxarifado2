@@ -20,16 +20,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textViewQuantidade"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:text="Quantidade"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/textViewId"
             android:layout_width="wrap_content"
             android:layout_height="55dp"

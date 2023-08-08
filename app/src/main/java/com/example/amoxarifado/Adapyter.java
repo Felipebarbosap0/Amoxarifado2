@@ -15,18 +15,18 @@ public class Adapyter extends BaseAdapter {
 
     // Listas que armazenam os dados que serão exibidos.
     List<String> Nome;
-    List<String> Quantidade;
+
     List<String> Id;
 
     // Usado para inflar as views a partir do layout XML.
     LayoutInflater inflater;
 
     // Construtor do adaptador.
-    public Adapyter(Context context, List<String> nome, List<String> quantidade, List<String> id){
+    public Adapyter(Context context, List<String> nome, List<String> id){
         this.context = context;
         this.Nome = nome;
         this.Id = id;
-        this.Quantidade = quantidade;
+
 
         // O LayoutInflater é usado para criar instâncias de layout a partir de um arquivo XML.
         inflater = LayoutInflater.from(context);
@@ -58,12 +58,10 @@ public class Adapyter extends BaseAdapter {
 
         // Obtém referências para os elementos de texto na view.
         TextView nometv = convertView.findViewById(R.id.textViewNome);
-        TextView quantidadetv = convertView.findViewById(R.id.textViewQuantidade);
         TextView idtv = convertView.findViewById(R.id.textViewId);
 
         // Define os valores dos elementos de texto com base nos dados da lista.
         nometv.setText(Nome.get(position));
-        quantidadetv.setText(Quantidade.get(position));
         idtv.setText(Id.get(position));
 
         // Retorna a view completa para ser exibida na lista.

@@ -30,15 +30,6 @@
         android:textColor="#000000"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextitemQuantidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Qunatidade do Item"
-        android:inputType="text"
-        android:textStyle="bold" />
-
     <Button
         android:id="@+id/buttonConfirmar"
         android:layout_width="match_parent"

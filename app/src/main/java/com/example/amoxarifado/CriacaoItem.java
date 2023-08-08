@@ -33,7 +33,7 @@ import java.util.UUID;
 
 public class CriacaoItem extends AppCompatActivity {
     // Declaração de variáveis para os elementos da interface
-    EditText Id, Nome, Quantidade;
+    EditText Id, Nome;
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -66,7 +66,7 @@ public class CriacaoItem extends AppCompatActivity {
     private void ativador() {
         Id = findViewById(R.id.editTextItemId);
         Nome = findViewById(R.id.editTextItemName);
-        Quantidade = findViewById(R.id.editTextitemQuantidade);
+
         imagem = findViewById(R.id.imageView);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -113,7 +113,6 @@ public class CriacaoItem extends AppCompatActivity {
 
                             // Preenche o mapa 'dados' com os valores do item
                             dados.put("ID", Id.getText().toString());
-                            dados.put("Quantidade", Quantidade.getText().toString());
                             dados.put("Url", uri.toString());
 
                             // Define os valores no Firebase Realtime Database

@@ -23,7 +23,7 @@ import java.util.Map;
 public class DadosAdm extends AppCompatActivity {
     // Declaração de variáveis
     Map<String, String> dadosContatos;
-    TextView tvNome, tvQuantidade, tvId;
+    TextView tvNome, tvId;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference deleteRef;
@@ -42,7 +42,6 @@ public class DadosAdm extends AppCompatActivity {
     // Exibe os detalhes do contato nos campos de texto
     private void mostrarContato() {
         tvNome.setText(dadosContatos.get("Nome"));
-        tvQuantidade.setText(dadosContatos.get("Quantidade"));
         tvId.setText(dadosContatos.get("Id"));
     }
 
@@ -51,7 +50,6 @@ public class DadosAdm extends AppCompatActivity {
         dadosContatos = HomeAdm.dados; // Obter dados do contato da classe HomeAdm
         tvNome = findViewById(R.id.tvNome);
         tvId = findViewById(R.id.tvId);
-        tvQuantidade = findViewById(R.id.tvQuantidade);
         mAuth = FirebaseAuth.getInstance(); // Obter instância de autenticação do Firebase
         database = FirebaseDatabase.getInstance(); // Obter instância do banco de dados do Firebase
     }
