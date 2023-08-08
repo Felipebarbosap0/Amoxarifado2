@@ -24,9 +24,9 @@ import java.util.Map;
 
 public class HomeAdm extends AppCompatActivity {
     // Declaração de variáveis
-    ListView list;
+    ListView listAdm;
     List<String> nomes;
-    List<String> quantidade;
+
     List<String> Id;
 
     String[] campos = {"ID", "Quantidade"};
@@ -49,12 +49,12 @@ public class HomeAdm extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Adapyter adapter = new Adapyter(getApplicationContext(), nomes, quantidade, Id);
-                list.setAdapter(adapter);
+                Adapyter adapter = new Adapyter(getApplicationContext(), nomes, Id);
+                listAdm.setAdapter(adapter);
             }
         }, 5000); // Aguarda 5 segundos e depois define o adapter da lista
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listAdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 for (int i = 0; i < nomes.size(); i++) {
@@ -62,7 +62,6 @@ public class HomeAdm extends AppCompatActivity {
                         // Preenche o mapa 'dados' com informações do item selecionado
                         dados.put("Nome", nomes.get(position));
                         dados.put("ID", Id.get(position));
-                        dados.put("Quantidade", quantidade.get(position));
 
                         // Abre a tela de DadosAdm com as informações preenchidas
                         Intent intent = new Intent(getApplicationContext(), DadosAdm.class);
@@ -107,9 +106,7 @@ public class HomeAdm extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String valor = snapshot.getValue(String.class);
 
-                if (campo.equals("Quantidade")) {
-                    quantidade.add(valor); // Adiciona a quantidade à lista
-                } else {
+                if (campo.equals("Id")) {
                     Id.add(valor); // Adiciona o ID à lista
                 }
             }
@@ -123,9 +120,8 @@ public class HomeAdm extends AppCompatActivity {
 
     // Método para inicializar elementos da interface e Firebase
     private void ativar() {
-        list = findViewById(R.id.list);
+        listAdm = findViewById(R.id.listAdm);
         nomes = new ArrayList<>();
-        quantidade = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();

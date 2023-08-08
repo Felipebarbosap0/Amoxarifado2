@@ -9,9 +9,15 @@
     tools:context=".HomeAdm">
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/listUser"
         android:layout_width="match_parent"
         android:layout_height="603dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pedido" />
 
     <Button
         android:id="@+id/buttonAddItem"

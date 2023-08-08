@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Map;
 
 public class HomeUser extends AppCompatActivity {
-    ListView list;
+    ListView listUser;
     List<String> nomes;
-    List<String> quantidade;
+
     List<String> Id;
 
     String[] campos = {"ID", "Quantidade"};
@@ -48,12 +48,12 @@ public class HomeUser extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Adapyter adapter = new Adapyter(getApplicationContext(),nomes,quantidade,Id);
-                list.setAdapter(adapter);
+                Adapyter adapter = new Adapyter(getApplicationContext(),nomes,Id);
+                listUser.setAdapter(adapter);
             }
         },5000); // Define um atraso de 5 segundos antes de exibir os dados na lista
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 for (int i = 0; i < nomes.size(); i++){
@@ -61,7 +61,7 @@ public class HomeUser extends AppCompatActivity {
                         // Define os dados selecionados para a próxima atividade
                         dados.put("Nome", nomes.get(position));
                         dados.put("ID", Id.get(position));
-                        dados.put("Quantidade", quantidade.get(position));
+
 
                         Intent intent = new Intent(getApplicationContext(), DadosUser.class);
                         startActivity(intent);
@@ -102,9 +102,7 @@ public class HomeUser extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String valor = snapshot.getValue(String.class);
 
-                if (campo.equals("Quantidade")){
-                    quantidade.add(valor); // Armazena as quantidades
-                }else{
+                if (campo.equals("Id")){
                     Id.add(valor); // Armazena os IDs
                 }
             }
@@ -117,9 +115,8 @@ public class HomeUser extends AppCompatActivity {
     }
 
     private void ativar() {
-        list = findViewById(R.id.list) ;
+        listUser = findViewById(R.id.listUser) ;
         nomes = new ArrayList<>();
-        quantidade = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
