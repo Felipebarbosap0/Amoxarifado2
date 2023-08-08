@@ -1,6 +1,5 @@
 package com.example.amoxarifado;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,11 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Main extends AppCompatActivity {
 
+    // Declaração das variáveis para os campos de entrada e autenticação
     private EditText editTextUser, editTextSenha;
     private FirebaseAuth mAuth;
     CheckBox ms;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,54 +29,56 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
+        // Chamada do método para inicializar componentes
         ativar();
     }
 
+    // Método para inicializar os componentes
     private void ativar() {
         editTextUser = findViewById(R.id.editTextEmailLogin);
         editTextSenha = findViewById(R.id.editTextSenhaLogin);
         mAuth =  FirebaseAuth.getInstance();
         ms = findViewById(R.id.ms);
-
     }
-    public void  ms(View view){
+
+    // Método para alterar a visibilidade da senha ao clicar na checkbox
+    public void ms(View view){
         if (ms.isChecked()) {
-            editTextSenha.setInputType(1);
+            editTextSenha.setInputType(1); // 1 representa o tipo de entrada de texto "text"
         } else {
-            editTextSenha.setInputType(129);
+            editTextSenha.setInputType(129); // 129 representa o tipo de entrada de texto "password"
         }
     }
+
+    // Método para executar o login ao clicar no botão
     public void btnLogin(View view) {
         if (editTextUser.getText().toString().isEmpty() ||
                 editTextSenha.getText().toString().isEmpty()) {
+            // Exibir uma mensagem de erro se os campos estiverem vazios
             Toast.makeText(getApplicationContext(),
                     "É necessário preencher todos os campos",
                     Toast.LENGTH_LONG).show();
-        }
-        else {
-            // estabelecendo variáveis
+        } else {
+            // Iniciar o processo de autenticação com Firebase
             mAuth.signInWithEmailAndPassword(editTextUser.getText().toString(),
                             editTextSenha.getText().toString())
-
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-
-                                // Verifica se o e-mail contém um '@'
+                                // Verificar se o e-mail contém um '@'
                                 if (!editTextUser.getText().toString().contains("@")) {
+                                    // Exibir mensagem de erro para e-mail inválido
                                     Toast.makeText(getApplicationContext(),
                                             "E-mail inválido. Certifique-se de que o e-mail contenha um '@'",
                                             Toast.LENGTH_LONG).show();
                                 } else {
-                                    // Separa o e-mail em duas partes: nome de usuário e domínio
+                                    // Separar o e-mail em nome de usuário e domínio
                                     String[] parts = editTextUser.getText().toString().split("@");
                                     String dominio = parts[1];
 
-                                    // Verifica o tipo de usuário
                                     if (dominio.equals("senai.com")) {
-
-                                        // Usuário é do tipo 'adm'
+                                        // Usuário administrador
                                         Log.d("user", "Administrador logado");
                                         Toast.makeText(getApplicationContext(),
                                                 "Administrador logado",
@@ -86,7 +86,7 @@ public class Main extends AppCompatActivity {
                                         Intent i = new Intent(Main.this, HomeAdm.class);
                                         startActivity(i);
                                     } else {
-                                        // Usuário é do tipo 'usuário'
+                                        // Usuário comum
                                         Log.d("user", "Usuário logado");
                                         Toast.makeText(getApplicationContext(),
                                                 "Usuário logado",
@@ -95,13 +95,10 @@ public class Main extends AppCompatActivity {
                                         startActivity(i);
                                     }
                                 }
-
                             } else {
-
-                                //verificação de entrada
-
+                                // Tratamento de falha no login
                                 if (editTextSenha.getText().toString().toCharArray().length < 6) {
-
+                                    // Senha muito curta
                                     Toast.makeText(getApplicationContext(),
                                             "Senha não possui a quantidade necessária",
                                             Toast.LENGTH_LONG).show();
@@ -112,53 +109,29 @@ public class Main extends AppCompatActivity {
                                             confir = "sim";
                                             break;
                                         }
-
                                     }
 
-                                    if (confir == "sim") {
-
+                                    if (confir.equals("sim")) {
+                                        // E-mail válido, mas login inexistente
                                         Toast.makeText(getApplicationContext(),
                                                 "Login inexistente",
                                                 Toast.LENGTH_LONG).show();
                                     } else {
-
+                                        // E-mail inválido
                                         Toast.makeText(getApplicationContext(),
                                                 "Email não existente",
                                                 Toast.LENGTH_LONG).show();
                                     }
                                 }
-
-                                //sucesso no login
-
-
-
                             }
                         }
                     });
         }
     }
 
-
-
-
+    // Método para iniciar a atividade de cadastro ao clicar no botão
     public void btnCadastro(View view){
         Intent intent = new Intent(Main.this, Cadastro.class);
         startActivity(intent);
-
     }
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//
-//        Log.d("user", String.valueOf(currentUser));
-//
-//        if (currentUser != null) {
-//             Se já houver um usuário logado, redireciona para a tela Home
-//            Intent intent = new Intent(getApplicationContext(), HomeAdm.class);
-//            startActivity(intent);
-//        }
-//    }
-
 }

@@ -1,6 +1,5 @@
 package com.example.amoxarifado;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,50 +13,44 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Map;
 
 public class DadosUser extends AppCompatActivity {
-    Map<String, String> dadosContatos;
-    TextView NomeUser, IdUser, QuantUser, QuantInser;
-    FirebaseAuth mAuth;
-    FirebaseDatabase database;
-
+    Map<String, String> dadosContatos; // Declaração de uma variável do tipo Map para armazenar os dados do contato
+    TextView NomeUser, IdUser, QuantUser, QuantInser; // Declaração das variáveis TextView para exibir os dados do contato
+    FirebaseAuth mAuth; // Variável para autenticação do Firebase
+    FirebaseDatabase database; // Variável para o banco de dados do Firebase
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dados_user) ;
-        getSupportActionBar().hide();
+        setContentView(R.layout.activity_dados_user); // Define o layout da atividade
+        getSupportActionBar().hide(); // Esconde a barra de ação da atividade
 
+        iniciarComponentes(); // Chama o método para inicializar os componentes da tela
 
-        iniciarComponentes(); // Inicializa os componentes da tela
-
-        mostrarContato(); // Exibe os detalhes do contato na tela
+        mostrarContato(); // Chama o método para exibir os detalhes do contato na tela
     }
 
     private void mostrarContato() {
         NomeUser.setText(dadosContatos.get("Nome")); // Define o nome do contato no TextView correspondente
-        IdUser.setText(dadosContatos.get("ID")); // Define o email do contato no TextView correspondente
-        QuantUser.setText(dadosContatos.get("Quantidade")); // Define o telefone do contato no TextView correspondente
-
+        IdUser.setText(dadosContatos.get("ID")); // Define o ID do contato no TextView correspondente
+        QuantUser.setText(dadosContatos.get("Quantidade")); // Define a quantidade do contato no TextView correspondente
     }
 
     private void iniciarComponentes() {
-
-        dadosContatos = HomeUser.dados; // Obtém os dados do contato da tela VContatos
+        dadosContatos = HomeUser.dados; // Obtém os dados do contato da tela HomeUser
         NomeUser = findViewById(R.id.tvNome); // Obtém a referência do TextView para o nome do contato
-        QuantUser = findViewById(R.id.QuantUser);// Obtém a referência do TextView para o email do contato
-        IdUser = findViewById(R.id.tvId);
-        QuantInser = findViewById(R.id.QuantInser); // Obtém a referência do TextView para o telefone do contato
+        QuantUser = findViewById(R.id.QuantUser); // Obtém a referência do TextView para a quantidade do contato
+        IdUser = findViewById(R.id.tvId); // Obtém a referência do TextView para o ID do contato
+        QuantInser = findViewById(R.id.QuantInser); // Obtém a referência do TextView para a quantidade inserida
         mAuth = FirebaseAuth.getInstance(); // Inicializa o Firebase Authentication
         database = FirebaseDatabase.getInstance(); // Inicializa o Firebase Database
     }
 
-
-    public void adcionar(View view){
-
+    public void adicionar(View view) {
+        // Método vazio, que provavelmente seria utilizado para adicionar algo
     }
 
-    public  void voltar(View view){
-        Intent i = new Intent(getApplicationContext(), HomeUser.class);
-        startActivity(i);
-
+    public void voltar(View view) {
+        Intent i = new Intent(getApplicationContext(), HomeUser.class); // Cria uma intenção para voltar para a atividade HomeUser
+        startActivity(i); // Inicia a atividade
     }
 }

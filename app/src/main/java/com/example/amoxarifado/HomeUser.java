@@ -36,33 +36,29 @@ public class HomeUser extends AppCompatActivity {
 
     static Map<String, String> dados;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user);
         getSupportActionBar().hide();
-        ativar();
+        ativar(); // Inicializa os componentes e variáveis
 
-        pegarChaves();
+        pegarChaves(); // Inicia o processo de obtenção de dados do Firebase
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Adapyter adapter = new Adapyter(getApplicationContext(),nomes,quantidade,Id);
                 list.setAdapter(adapter);
-
-
             }
-        },5000);
+        },5000); // Define um atraso de 5 segundos antes de exibir os dados na lista
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 for (int i = 0; i < nomes.size(); i++){
                     if (i == position){
-
-
+                        // Define os dados selecionados para a próxima atividade
                         dados.put("Nome", nomes.get(position));
                         dados.put("ID", Id.get(position));
                         dados.put("Quantidade", quantidade.get(position));
@@ -73,12 +69,9 @@ public class HomeUser extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private void pegarChaves() {
-
         myRef = database.getReference("Item/" );
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -91,19 +84,17 @@ public class HomeUser extends AppCompatActivity {
                     for (String campo : campos) {
                         dadosRef = database.getReference("Item/"
                                 + nome + "/" + campo + "/");
-
-                        pegarDados(campo);
+                        pegarDados(campo); // Obtém os valores dos campos "ID" e "Quantidade"
                     }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Lida com erros de leitura dos dados
             }
         });
     }
-
 
     private void pegarDados(String campo){
         dadosRef.addValueEventListener(new ValueEventListener() {
@@ -112,15 +103,15 @@ public class HomeUser extends AppCompatActivity {
                 String valor = snapshot.getValue(String.class);
 
                 if (campo.equals("Quantidade")){
-                    quantidade.add(valor);
+                    quantidade.add(valor); // Armazena as quantidades
                 }else{
-                    Id.add(valor);
+                    Id.add(valor); // Armazena os IDs
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Lida com erros de leitura dos dados
             }
         });
     }
@@ -135,12 +126,8 @@ public class HomeUser extends AppCompatActivity {
         dados = new HashMap<>();
     }
 
-
-
     public void btnSair(View view){
         Intent intent = new Intent(getApplicationContext(), Main.class);
-        startActivity(intent);
-
-
+        startActivity(intent); // Volta para a atividade principal
     }
 }
