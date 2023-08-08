@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class HomeAdm extends AppCompatActivity {
     // Declaração de variáveis
-    ListView list;
+    ListView listAdm;
     List<String> nomes;
 
     List<String> Id;
@@ -50,11 +50,11 @@ public class HomeAdm extends AppCompatActivity {
             @Override
             public void run() {
                 Adapyter adapter = new Adapyter(getApplicationContext(), nomes, Id);
-                list.setAdapter(adapter);
+                listAdm.setAdapter(adapter);
             }
         }, 5000); // Aguarda 5 segundos e depois define o adapter da lista
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listAdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 for (int i = 0; i < nomes.size(); i++) {
@@ -120,7 +120,7 @@ public class HomeAdm extends AppCompatActivity {
 
     // Método para inicializar elementos da interface e Firebase
     private void ativar() {
-        list = findViewById(R.id.list);
+        listAdm = findViewById(R.id.listAdm);
         nomes = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();

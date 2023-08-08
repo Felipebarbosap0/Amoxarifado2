@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class HomeUser extends AppCompatActivity {
-    ListView list;
+    ListView listUser;
     List<String> nomes;
 
     List<String> Id;
@@ -49,11 +49,11 @@ public class HomeUser extends AppCompatActivity {
             @Override
             public void run() {
                 Adapyter adapter = new Adapyter(getApplicationContext(),nomes,Id);
-                list.setAdapter(adapter);
+                listUser.setAdapter(adapter);
             }
         },5000); // Define um atraso de 5 segundos antes de exibir os dados na lista
 
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 for (int i = 0; i < nomes.size(); i++){
@@ -115,7 +115,7 @@ public class HomeUser extends AppCompatActivity {
     }
 
     private void ativar() {
-        list = findViewById(R.id.list) ;
+        listUser = findViewById(R.id.listUser) ;
         nomes = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
