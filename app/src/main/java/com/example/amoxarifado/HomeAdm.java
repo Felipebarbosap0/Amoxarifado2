@@ -35,7 +35,7 @@ public class HomeAdm extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef, dadosRef;
 
-    static Map<String, String> dados;
+    static Map<String, String> dadosAdm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,8 @@ public class HomeAdm extends AppCompatActivity {
                 for (int i = 0; i < nomes.size(); i++) {
                     if (i == position) {
                         // Preenche o mapa 'dados' com informações do item selecionado
-                        dados.put("Nome", nomes.get(position));
-                        dados.put("ID", Id.get(position));
+                        dadosAdm.put("Nome", nomes.get(position));
+                        dadosAdm.put("ID", Id.get(position));
 
                         // Abre a tela de DadosAdm com as informações preenchidas
                         Intent intent = new Intent(getApplicationContext(), DadosAdm.class);
@@ -125,7 +125,7 @@ public class HomeAdm extends AppCompatActivity {
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dados = new HashMap<>();
+        dadosAdm = new HashMap<>();
     }
 
     // Método para lidar com o clique do botão "Adicionar Item"

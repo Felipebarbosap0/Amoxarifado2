@@ -17,7 +17,7 @@ public class Pedido extends AppCompatActivity {
 
     String[] campos = {"ID", "Quantidade"};
 
-   
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

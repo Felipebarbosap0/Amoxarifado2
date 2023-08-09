@@ -34,7 +34,7 @@ public class HomeUser extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef,dadosRef;
 
-    static Map<String, String> dados;
+    static Map<String, String> dadosUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,8 @@ public class HomeUser extends AppCompatActivity {
                 for (int i = 0; i < nomes.size(); i++){
                     if (i == position){
                         // Define os dados selecionados para a próxima atividade
-                        dados.put("Nome", nomes.get(position));
-                        dados.put("ID", Id.get(position));
+                        dadosUser.put("Nome", nomes.get(position));
+                        dadosUser.put("ID", Id.get(position));
 
                         Intent intent = new Intent(getApplicationContext(), DadosUser.class);
                         startActivity(intent);
@@ -119,7 +119,7 @@ public class HomeUser extends AppCompatActivity {
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dados = new HashMap<>();
+        dadosUser = new HashMap<>();
     }
 
     public void btnSair(View view){
