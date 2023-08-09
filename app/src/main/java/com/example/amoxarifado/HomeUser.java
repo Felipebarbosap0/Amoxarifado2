@@ -62,7 +62,6 @@ public class HomeUser extends AppCompatActivity {
                         dados.put("Nome", nomes.get(position));
                         dados.put("ID", Id.get(position));
 
-
                         Intent intent = new Intent(getApplicationContext(), DadosUser.class);
                         startActivity(intent);
                     }
@@ -102,7 +101,7 @@ public class HomeUser extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String valor = snapshot.getValue(String.class);
 
-                if (campo.equals("Id")){
+                if (campo.equals("ID")){
                     Id.add(valor); // Armazena os IDs
                 }
             }

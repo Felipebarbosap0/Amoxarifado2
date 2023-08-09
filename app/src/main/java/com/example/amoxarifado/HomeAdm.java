@@ -75,7 +75,7 @@ public class HomeAdm extends AppCompatActivity {
     // Método para obter as chaves (nomes dos itens) do Firebase
     private void pegarChaves() {
         myRef = database.getReference("Item/");
-
+ 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
