@@ -29,7 +29,7 @@ public class HomeAdm extends AppCompatActivity {
 
     List<String> Id;
 
-    String[] campos = {"ID", "Quantidade"};
+    String[] campos = {"ID", "Url"};
 
     FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -106,7 +106,7 @@ public class HomeAdm extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String valor = snapshot.getValue(String.class);
 
-                if (campo.equals("Id")) {
+                if (campo.equals("ID")) {
                     Id.add(valor); // Adiciona o ID à lista
                 }
             }
@@ -120,7 +120,7 @@ public class HomeAdm extends AppCompatActivity {
 
     // Método para inicializar elementos da interface e Firebase
     private void ativar() {
-        listAdm = findViewById(R.id.listAdm);
+        listAdm = findViewById(R.id.listUser);
         nomes = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
