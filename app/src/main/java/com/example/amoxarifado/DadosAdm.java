@@ -49,8 +49,8 @@ public class DadosAdm extends AppCompatActivity {
     // Inicializa os componentes da interface
     private void iniciarComponentes() {
         dadosContatosAdm = HomeAdm.dadosAdm; // Obter dados do contato da classe HomeAdm
-        NomeAdm = findViewById(R.id.NomeAdm);
-        IdAdm = findViewById(R.id.IdAdm);
+        NomeAdm = findViewById(R.id.nomeItem);
+        IdAdm = findViewById(R.id.idItem);
         mAuth = FirebaseAuth.getInstance(); // Obter instância de autenticação do Firebase
         database = FirebaseDatabase.getInstance(); // Obter instância do banco de dados do Firebase
     }
@@ -72,8 +72,8 @@ public class DadosAdm extends AppCompatActivity {
                     startActivity(i); // Iniciar a atividade HomeAdm após a exclusão
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Item não foi deletado com sucesso",
-                            Toast.LENGTH_SHORT).show();
+                        "Item não foi deletado com sucesso",
+                        Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -9,31 +9,31 @@
 
 
     <TextView
-        android:id="@+id/NomeAdm"
-        android:layout_width="224dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="158dp"
-        android:text="Nome"
-        android:textAlignment="center"
-        android:textSize="18dp"
-        android:textStyle="bold"
+        android:id="@+id/textView3"
+        android:layout_width="95dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="247dp"
+        android:text="ID do item: "
+        app:layout_constraintBottom_toTopOf="@+id/idItem"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageAdm" />
+        app:layout_constraintTop_toBottomOf="@+id/nomeItem"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btnadd"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:onClick="adcionar"
-        android:text="Adicionar"
+        android:layout_marginBottom="44dp"
+        android:onClick="adicionar"
+        android:text="Solicitar item"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button10"
@@ -46,18 +46,21 @@
         app:layout_constraintStart_toStartOf="@+id/btnadd" />
 
     <TextView
-        android:id="@+id/IdAdm"
+        android:id="@+id/idItem"
         android:layout_width="225dp"
         android:layout_height="32dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="47dp"
         android:text="ID"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/NomeAdm"
-        app:layout_constraintStart_toStartOf="@+id/NomeAdm"
-        app:layout_constraintTop_toBottomOf="@+id/NomeAdm" />
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ImageView
         android:id="@+id/imageAdm"
@@ -72,14 +75,63 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <EditText
-        android:id="@+id/QuantInser"
+        android:id="@+id/quantidadeItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/btnadd"
-        tools:layout_editor_absoluteX="109dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="95dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="248dp"
+        android:text="Nome do item: "
+        app:layout_constraintBottom_toTopOf="@+id/nomeItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAdm" />
+
+    <TextView
+        android:id="@+id/nomeItem"
+        android:layout_width="224dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="11dp"
+        android:text="Nome"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="158dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="183dp"
+        android:layout_marginBottom="1dp"
+        android:text="Quantidade desejada:"
+        app:layout_constraintBottom_toTopOf="@+id/quantidadeItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idItem" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/NomeAdm"
+        android:id="@+id/nomeItem"
         android:layout_width="236dp"
         android:layout_height="62dp"
         android:layout_marginStart="158dp"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="@+id/btnadd" />
 
     <TextView
-        android:id="@+id/IdAdm"
+        android:id="@+id/idItem"
         android:layout_width="235dp"
         android:layout_height="50dp"
         android:text="ID"
@@ -54,9 +54,9 @@
         android:textAllCaps="false"
         android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/NomeAdm"
+        app:layout_constraintEnd_toEndOf="@+id/nomeItem"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/NomeAdm"
+        app:layout_constraintStart_toStartOf="@+id/nomeItem"
         tools:layout_editor_absoluteY="284dp" />
 
     <ImageView
