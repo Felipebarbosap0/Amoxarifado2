@@ -1,6 +1,6 @@
 *.iml
-.gradle
-.idea/
+/.gradle/
+/.idea/
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -14,5 +14,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+build.gradle.kts
 app/proguard-rules.pro
 app/google-services.json
+

@@ -52,7 +52,7 @@ public class HomeAdm extends AppCompatActivity {
                 Adapyter adapter = new Adapyter(getApplicationContext(), nomes, Id);
                 listAdm.setAdapter(adapter);
             }
-        }, 5000); // Aguarda 5 segundos e depois define o adapter da lista
+        }, 2000); // Aguarda 5 segundos e depois define o adapter da lista
 
         listAdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

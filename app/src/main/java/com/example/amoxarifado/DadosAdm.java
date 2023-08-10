@@ -49,16 +49,15 @@ public class DadosAdm extends AppCompatActivity {
     // Inicializa os componentes da interface
     private void iniciarComponentes() {
         dadosContatosAdm = HomeAdm.dadosAdm; // Obter dados do contato da classe HomeAdm
-        NomeAdm = findViewById(R.id.nomeItem);
-        IdAdm = findViewById(R.id.idItem);
+        NomeAdm = findViewById(R.id.NomeAdm);
+        IdAdm = findViewById(R.id.IdAdm);
         mAuth = FirebaseAuth.getInstance(); // Obter instância de autenticação do Firebase
         database = FirebaseDatabase.getInstance(); // Obter instância do banco de dados do Firebase
     }
 
     // Método para apagar um item do banco de dados
     public void apagar(View view) {
-        deleteRef = database.getReference("User/" + mAuth.getUid()
-                + "/Item/" + dadosContatosAdm.get("Nome") + "/");
+        deleteRef = database.getReference("Item/" + dadosContatosAdm.get("Nome") + "/");
 
         // Remover o valor do banco de dados e adicionar um ouvinte para completar a operação
         deleteRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
