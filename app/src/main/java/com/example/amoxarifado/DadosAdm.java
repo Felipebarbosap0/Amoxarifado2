@@ -57,8 +57,7 @@ public class DadosAdm extends AppCompatActivity {
 
     // Método para apagar um item do banco de dados
     public void apagar(View view) {
-        deleteRef = database.getReference("User/" + mAuth.getUid()
-                + "/Item/" + dadosContatosAdm.get("Nome") + "/");
+        deleteRef = database.getReference("Item/" + dadosContatosAdm.get("Nome") + "/");
 
         // Remover o valor do banco de dados e adicionar um ouvinte para completar a operação
         deleteRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
