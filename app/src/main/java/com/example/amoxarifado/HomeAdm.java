@@ -41,7 +41,7 @@ public class HomeAdm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_adm);
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Itens Solicitáveis");
         ativar(); // Inicializa os elementos da interface
 
         pegarChaves(); // Obtém os dados do Firebase e popula as listas
@@ -120,7 +120,7 @@ public class HomeAdm extends AppCompatActivity {
 
     // Método para inicializar elementos da interface e Firebase
     private void ativar() {
-        listAdm = findViewById(R.id.listUser);
+        listAdm = findViewById(R.id.listItens);
         nomes = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
@@ -137,6 +137,11 @@ public class HomeAdm extends AppCompatActivity {
     // Método para lidar com o clique do botão "Sair"
     public void btnSair(View view) {
         Intent intent = new Intent(getApplicationContext(), Main.class);
+        startActivity(intent);
+    }
+
+    public void visualizarPedidos(View view){
+        Intent intent = new Intent(getApplicationContext(), ListagemPedidos.class);
         startActivity(intent);
     }
 }

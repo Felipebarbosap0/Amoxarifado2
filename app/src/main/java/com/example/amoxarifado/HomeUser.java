@@ -40,7 +40,7 @@ public class HomeUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user);
-        getSupportActionBar().hide();
+        setTitle("Itens Solicitáveis");
         ativar(); // Inicializa os componentes e variáveis
 
         pegarChaves(); // Inicia o processo de obtenção de dados do Firebase
@@ -114,7 +114,7 @@ public class HomeUser extends AppCompatActivity {
     }
 
     private void ativar() {
-        listUser = findViewById(R.id.listUser) ;
+        listUser = findViewById(R.id.listItens) ;
         nomes = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
@@ -125,5 +125,10 @@ public class HomeUser extends AppCompatActivity {
     public void btnSair(View view){
         Intent intent = new Intent(getApplicationContext(), Main.class);
         startActivity(intent); // Volta para a atividade principal
+    }
+
+    public void visualizarMeusPedidos(View view){
+        Intent intent = new Intent(getApplicationContext(), ListagemPedidos.class);
+        startActivity(intent);
     }
 }

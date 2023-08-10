@@ -9,15 +9,15 @@
     tools:context=".HomeAdm">
 
     <ListView
-        android:id="@+id/listUser"
+        android:id="@+id/listItens"
         android:layout_width="match_parent"
         android:layout_height="603dp" />
 
     <Button
-        android:id="@+id/buttonAddItem"
+        android:id="@+id/buttonVoltar"
         android:layout_width="104dp"
         android:layout_height="48dp"
-        android:onClick="btnSair"
+        android:onClick="voltar"
         android:text="Voltar" />
 
 </LinearLayout>

@@ -53,9 +53,10 @@ public class DadosUser extends AppCompatActivity {
 
         HashMap<String,String> dados = new HashMap<>();
         // Preenche o mapa 'dados' com os valores do item
-        dados.put("ID", idItem.getText().toString());
-        dados.put("NomeItem", nomeItem.getText().toString());
-        dados.put("QuantidadeItemSolicitada", quantidadeItem.getText().toString());
+        dados.put("idItem", idItem.getText().toString());
+        dados.put("nomeItem", nomeItem.getText().toString());
+        dados.put("quantidadeSolicitada", quantidadeItem.getText().toString());
+        dados.put("usuarioSolicitante", mAuth.getCurrentUser().getEmail());
 
         DatabaseReference pedidosRef = myRef.child("Pedido");
         DatabaseReference novoPedidoRef = pedidosRef.push();
