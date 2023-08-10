@@ -9,19 +9,66 @@
 
 
     <TextView
-        android:id="@+id/nomeItem"
-        android:layout_width="236dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="158dp"
+        android:id="@+id/nomeItem2"
+        android:layout_width="224dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="118dp"
         android:text="Nome"
         android:textAlignment="center"
-        android:textSize="40dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/idItem2"
+        android:layout_width="225dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="117dp"
+        android:text="ID"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="151dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="248dp"
+        android:text="Nome do item: "
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageAdm" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="158dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="215dp"
+        android:text="ID do item: "
+        android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageAdm" />
+        app:layout_constraintTop_toBottomOf="@+id/nomeItem2" />
 
     <Button
         android:id="@+id/btnadd"
@@ -40,24 +87,11 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
+        android:onClick="voltar"
         android:text="Voltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnadd"
         app:layout_constraintStart_toStartOf="@+id/btnadd" />
-
-    <TextView
-        android:id="@+id/idItem"
-        android:layout_width="235dp"
-        android:layout_height="50dp"
-        android:text="ID"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/nomeItem"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/nomeItem"
-        tools:layout_editor_absoluteY="284dp" />
 
     <ImageView
         android:id="@+id/imageAdm"
