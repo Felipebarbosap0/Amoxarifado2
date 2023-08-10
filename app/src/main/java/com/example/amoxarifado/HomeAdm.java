@@ -29,19 +29,19 @@ public class HomeAdm extends AppCompatActivity {
 
     List<String> Id;
 
-    String[] campos = {"ID", "Quantidade"};
+    String[] campos = {"ID", "Url"};
 
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference myRef, dadosRef;
 
-    static Map<String, String> dados;
+    static Map<String, String> dadosAdm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_adm);
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Itens Solicitáveis");
         ativar(); // Inicializa os elementos da interface
 
         pegarChaves(); // Obtém os dados do Firebase e popula as listas
@@ -52,7 +52,7 @@ public class HomeAdm extends AppCompatActivity {
                 Adapyter adapter = new Adapyter(getApplicationContext(), nomes, Id);
                 listAdm.setAdapter(adapter);
             }
-        }, 5000); // Aguarda 5 segundos e depois define o adapter da lista
+        }, 2000); // Aguarda 5 segundos e depois define o adapter da lista
 
         listAdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,8 +60,8 @@ public class HomeAdm extends AppCompatActivity {
                 for (int i = 0; i < nomes.size(); i++) {
                     if (i == position) {
                         // Preenche o mapa 'dados' com informações do item selecionado
-                        dados.put("Nome", nomes.get(position));
-                        dados.put("ID", Id.get(position));
+                        dadosAdm.put("Nome", nomes.get(position));
+                        dadosAdm.put("ID", Id.get(position));
 
                         // Abre a tela de DadosAdm com as informações preenchidas
                         Intent intent = new Intent(getApplicationContext(), DadosAdm.class);
@@ -75,7 +75,7 @@ public class HomeAdm extends AppCompatActivity {
     // Método para obter as chaves (nomes dos itens) do Firebase
     private void pegarChaves() {
         myRef = database.getReference("Item/");
-
+ 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -106,7 +106,7 @@ public class HomeAdm extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String valor = snapshot.getValue(String.class);
 
-                if (campo.equals("Id")) {
+                if (campo.equals("ID")) {
                     Id.add(valor); // Adiciona o ID à lista
                 }
             }
@@ -120,12 +120,12 @@ public class HomeAdm extends AppCompatActivity {
 
     // Método para inicializar elementos da interface e Firebase
     private void ativar() {
-        listAdm = findViewById(R.id.listAdm);
+        listAdm = findViewById(R.id.listItens);
         nomes = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dados = new HashMap<>();
+        dadosAdm = new HashMap<>();
     }
 
     // Método para lidar com o clique do botão "Adicionar Item"
@@ -137,6 +137,11 @@ public class HomeAdm extends AppCompatActivity {
     // Método para lidar com o clique do botão "Sair"
     public void btnSair(View view) {
         Intent intent = new Intent(getApplicationContext(), Main.class);
+        startActivity(intent);
+    }
+
+    public void visualizarPedidos(View view){
+        Intent intent = new Intent(getApplicationContext(), ListagemPedidos.class);
         startActivity(intent);
     }
 }

@@ -17,7 +17,7 @@
         android:text="Adicionar Item" />
 
     <ListView
-        android:id="@+id/listUser"
+        android:id="@+id/listItens"
         android:layout_width="match_parent"
         android:layout_height="550dp" />
 
@@ -25,10 +25,11 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:text="Pedido" />
+        android:onClick="visualizarPedidos"
+        android:text="Ver Pedidos" />
 
     <Button
-        android:id="@+id/buttonAddItem"
+        android:id="@+id/buttonVoltar"
         android:layout_width="104dp"
         android:layout_height="48dp"
         android:onClick="btnSair"

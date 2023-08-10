@@ -34,13 +34,13 @@ public class HomeUser extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef,dadosRef;
 
-    static Map<String, String> dados;
+    static Map<String, String> dadosItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user);
-        getSupportActionBar().hide();
+        setTitle("Itens Solicitáveis");
         ativar(); // Inicializa os componentes e variáveis
 
         pegarChaves(); // Inicia o processo de obtenção de dados do Firebase
@@ -51,7 +51,7 @@ public class HomeUser extends AppCompatActivity {
                 Adapyter adapter = new Adapyter(getApplicationContext(),nomes,Id);
                 listUser.setAdapter(adapter);
             }
-        },5000); // Define um atraso de 5 segundos antes de exibir os dados na lista
+        },2000); // Define um atraso de 5 segundos antes de exibir os dados na lista
 
         listUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -59,9 +59,8 @@ public class HomeUser extends AppCompatActivity {
                 for (int i = 0; i < nomes.size(); i++){
                     if (i == position){
                         // Define os dados selecionados para a próxima atividade
-                        dados.put("Nome", nomes.get(position));
-                        dados.put("ID", Id.get(position));
-
+                        dadosItem.put("Nome", nomes.get(position));
+                        dadosItem.put("ID", Id.get(position));
 
                         Intent intent = new Intent(getApplicationContext(), DadosUser.class);
                         startActivity(intent);
@@ -102,7 +101,7 @@ public class HomeUser extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String valor = snapshot.getValue(String.class);
 
-                if (campo.equals("Id")){
+                if (campo.equals("ID")){
                     Id.add(valor); // Armazena os IDs
                 }
             }
@@ -115,16 +114,21 @@ public class HomeUser extends AppCompatActivity {
     }
 
     private void ativar() {
-        listUser = findViewById(R.id.listUser) ;
+        listUser = findViewById(R.id.listItens) ;
         nomes = new ArrayList<>();
         Id = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dados = new HashMap<>();
+        dadosItem = new HashMap<>();
     }
 
     public void btnSair(View view){
         Intent intent = new Intent(getApplicationContext(), Main.class);
         startActivity(intent); // Volta para a atividade principal
+    }
+
+    public void visualizarMeusPedidos(View view){
+        Intent intent = new Intent(getApplicationContext(), ListagemPedidos.class);
+        startActivity(intent);
     }
 }

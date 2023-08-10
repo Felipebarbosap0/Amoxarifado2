@@ -22,8 +22,8 @@ import java.util.Map;
 // Definição da classe DadosAdm que estende a classe AppCompatActivity
 public class DadosAdm extends AppCompatActivity {
     // Declaração de variáveis
-    Map<String, String> dadosContatos;
-    TextView tvNome, tvId;
+    Map<String, String> dadosContatosAdm;
+    TextView NomeAdm, IdAdm;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference deleteRef;
@@ -36,28 +36,28 @@ public class DadosAdm extends AppCompatActivity {
         getSupportActionBar().hide(); // Esconder a barra de ação
 
         iniciarComponentes(); // Inicializar componentes da interface
+
         mostrarContato(); // Exibir os detalhes do contato
     }
 
     // Exibe os detalhes do contato nos campos de texto
     private void mostrarContato() {
-        tvNome.setText(dadosContatos.get("Nome"));
-        tvId.setText(dadosContatos.get("Id"));
+        NomeAdm.setText(dadosContatosAdm.get("Nome")); // Define o ID do contato no TextView correspondente
+        IdAdm.setText(dadosContatosAdm.get("Id")); // Define o ID do contato no TextView correspondente
     }
 
     // Inicializa os componentes da interface
     private void iniciarComponentes() {
-        dadosContatos = HomeAdm.dados; // Obter dados do contato da classe HomeAdm
-        tvNome = findViewById(R.id.tvNome);
-        tvId = findViewById(R.id.tvId);
+        dadosContatosAdm = HomeAdm.dadosAdm; // Obter dados do contato da classe HomeAdm
+        NomeAdm = findViewById(R.id.NomeAdm);
+        IdAdm = findViewById(R.id.IdAdm);
         mAuth = FirebaseAuth.getInstance(); // Obter instância de autenticação do Firebase
         database = FirebaseDatabase.getInstance(); // Obter instância do banco de dados do Firebase
     }
 
     // Método para apagar um item do banco de dados
     public void apagar(View view) {
-        deleteRef = database.getReference("User/" + mAuth.getUid()
-                + "/Item/" + dadosContatos.get("Nome") + "/");
+        deleteRef = database.getReference("Item/" + dadosContatosAdm.get("Nome") + "/");
 
         // Remover o valor do banco de dados e adicionar um ouvinte para completar a operação
         deleteRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -71,8 +71,8 @@ public class DadosAdm extends AppCompatActivity {
                     startActivity(i); // Iniciar a atividade HomeAdm após a exclusão
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Item não foi deletado com sucesso",
-                            Toast.LENGTH_SHORT).show();
+                        "Item não foi deletado com sucesso",
+                        Toast.LENGTH_SHORT).show();
                 }
             }
         });
