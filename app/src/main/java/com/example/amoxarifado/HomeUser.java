@@ -51,7 +51,7 @@ public class HomeUser extends AppCompatActivity {
                 Adapyter adapter = new Adapyter(getApplicationContext(),nomes,Id);
                 listUser.setAdapter(adapter);
             }
-        },5000); // Define um atraso de 5 segundos antes de exibir os dados na lista
+        },2000); // Define um atraso de 5 segundos antes de exibir os dados na lista
 
         listUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

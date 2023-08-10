@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/nomeItem2"
+        android:id="@+id/NomeAdm"
         android:layout_width="224dp"
         android:layout_height="36dp"
         android:layout_marginStart="69dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/idItem2"
+        android:id="@+id/IdAdm"
         android:layout_width="225dp"
         android:layout_height="32dp"
         android:layout_marginStart="69dp"
@@ -68,7 +68,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomeItem2" />
+        app:layout_constraintTop_toBottomOf="@+id/NomeAdm" />
 
     <Button
         android:id="@+id/btnadd"
