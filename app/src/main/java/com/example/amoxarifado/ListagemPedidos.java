@@ -53,9 +53,11 @@ public class ListagemPedidos extends AppCompatActivity {
         DatabaseReference ref = database.getReference("/Pedido/");
         pedidos = new ArrayList<PedidoDTO>();
 
+        // Listener para capturar quando um novo pedido for adicionado ao nó "/Pedido/"
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                // Converter o DataSnapshot para um objeto PedidoDTO
                 PedidoDTO novoPedido = dataSnapshot.getValue(PedidoDTO.class);
                 novoPedido.idPedido = dataSnapshot.getKey();
                 pedidos.add(novoPedido);
@@ -63,21 +65,24 @@ public class ListagemPedidos extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                // Este método é chamado quando os detalhes de um pedido existente forem alterados
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                // Este método é chamado quando um pedido for removido
 
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                // Este método é chamado quando a ordem dos pedidos for alterada
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                // Este método é chamado em caso de erro na leitura dos dados
 
             }
         };

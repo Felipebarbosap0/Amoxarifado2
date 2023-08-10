@@ -94,7 +94,7 @@ public class HomeUser extends AppCompatActivity {
             }
         });
     }
-
+    // Método para obter os dados específicos do Firebase
     private void pegarDados(String campo){
         dadosRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,7 +112,7 @@ public class HomeUser extends AppCompatActivity {
             }
         });
     }
-
+    // Método para inicializar variáveis e objetos
     private void ativar() {
         listUser = findViewById(R.id.listItens) ;
         nomes = new ArrayList<>();
@@ -122,11 +122,13 @@ public class HomeUser extends AppCompatActivity {
         dadosItem = new HashMap<>();
     }
 
+    // Método para voltar para a atividade principal
     public void btnSair(View view){
         Intent intent = new Intent(getApplicationContext(), Main.class);
         startActivity(intent); // Volta para a atividade principal
     }
 
+    // Método para abrir a atividade de listagem de pedidos
     public void visualizarMeusPedidos(View view){
         Intent intent = new Intent(getApplicationContext(), ListagemPedidos.class);
         startActivity(intent);
