@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/NomeAdm"
+        android:id="@+id/nomeAdm"
         android:layout_width="224dp"
         android:layout_height="36dp"
         android:layout_marginStart="69dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/IdAdm"
+        android:id="@+id/idAdm"
         android:layout_width="225dp"
         android:layout_height="32dp"
         android:layout_marginStart="69dp"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageAdm" />
+        app:layout_constraintTop_toBottomOf="@+id/img" />
 
     <TextView
         android:id="@+id/textView5"
@@ -68,7 +68,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NomeAdm" />
+        app:layout_constraintTop_toBottomOf="@+id/nomeAdm" />
 
     <Button
         android:id="@+id/btnadd"
@@ -94,7 +94,7 @@
         app:layout_constraintStart_toStartOf="@+id/btnadd" />
 
     <ImageView
-        android:id="@+id/imageAdm"
+        android:id="@+id/img"
         android:layout_width="150sp"
         android:layout_height="150dp"
         android:layout_marginStart="130dp"

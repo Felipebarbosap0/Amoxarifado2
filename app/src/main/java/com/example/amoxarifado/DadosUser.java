@@ -41,10 +41,10 @@ public class DadosUser extends AppCompatActivity {
     }
 
     private void iniciarComponentes() {
-        dadosItem = HomeUser.dadosItem; // Obtém os dados do contato da tela HomeUser
+        dadosItem = HomeUser.dadosUser; // Obtém os dados do contato da tela HomeUser
         nomeItem = findViewById(R.id.nomeItem); // Obtém a referência do TextView para o nome do contato
         idItem =  findViewById(R.id.idItem);
-        quantidadeItem = (EditText) findViewById(R.id.quantidadeItem);
+        quantidadeItem =  findViewById(R.id.quantidadeItem);
         mAuth = FirebaseAuth.getInstance(); // Inicializa o Firebase Authentication
         database = FirebaseDatabase.getInstance(); // Inicializa o Firebase Database
     }

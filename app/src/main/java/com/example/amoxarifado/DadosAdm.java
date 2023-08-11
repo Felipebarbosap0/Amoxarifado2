@@ -5,6 +5,7 @@ package com.example.amoxarifado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +23,9 @@ import java.util.Map;
 // Definição da classe DadosAdm que estende a classe AppCompatActivity
 public class DadosAdm extends AppCompatActivity {
     // Declaração de variáveis
-    Map<String, String> dadosContatosAdm;
-    TextView NomeAdm, IdAdm;
+    Map<String, String> dadosAdm;
+    TextView nomeAdm, idAdm;
+    ImageView imageAdm;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference deleteRef;
@@ -42,22 +44,22 @@ public class DadosAdm extends AppCompatActivity {
 
     // Exibe os detalhes do contato nos campos de texto
     private void mostrarContato() {
-        NomeAdm.setText(dadosContatosAdm.get("Nome")); // Define o ID do contato no TextView correspondente
-        IdAdm.setText(dadosContatosAdm.get("Id")); // Define o ID do contato no TextView correspondente
+        nomeAdm.setText(dadosAdm.get("Nome")); // Define o ID do contato no TextView correspondente
+        idAdm.setText(dadosAdm.get("Id")); // Define o ID do contato no TextView correspondente
     }
 
     // Inicializa os componentes da interface
     private void iniciarComponentes() {
-        dadosContatosAdm = HomeAdm.dadosAdm; // Obter dados do contato da classe HomeAdm
-        NomeAdm = findViewById(R.id.NomeAdm);
-        IdAdm = findViewById(R.id.IdAdm);
+        dadosAdm = HomeAdm.dadosAdm; // Obter dados do contato da classe HomeAdm
+        nomeAdm = findViewById(R.id.nomeAdm);
+        idAdm = findViewById(R.id.idAdm);
         mAuth = FirebaseAuth.getInstance(); // Obter instância de autenticação do Firebase
         database = FirebaseDatabase.getInstance(); // Obter instância do banco de dados do Firebase
     }
 
     // Método para apagar um item do banco de dados
     public void apagar(View view) {
-        deleteRef = database.getReference("Item/" + dadosContatosAdm.get("Nome") + "/");
+        deleteRef = database.getReference("Item/" + dadosAdm.get("Nome") + "/");
 
         // Remover o valor do banco de dados e adicionar um ouvinte para completar a operação
         deleteRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
