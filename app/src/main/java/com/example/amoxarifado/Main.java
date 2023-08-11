@@ -77,7 +77,7 @@ public class Main extends AppCompatActivity {
                                     String[] parts = editTextUser.getText().toString().split("@");
                                     String dominio = parts[1];
 
-                                    if (dominio.equals("senai.com")) {
+                                    if (dominio.equals("adm.com")) {
                                         // Usuário administrador
                                         Log.d("user", "Administrador logado");
                                         Toast.makeText(getApplicationContext(),
