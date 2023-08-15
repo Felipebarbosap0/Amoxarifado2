@@ -8,124 +8,110 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class HomeAdm extends AppCompatActivity {
-    // Declaração de variáveis
-    ListView listAdm;
-    List<String> nomes;
-
-    List<String> Id;
-
-    String[] campos = {"ID", "Url"};
+    ListView itensListView;
+    ArrayList<ItemDTO> itens;
 
     FirebaseAuth mAuth;
     FirebaseDatabase database;
-    DatabaseReference myRef, dadosRef;
-
-    static Map<String, String> dadosAdm;
+    DatabaseReference myRef,dadosRef;
+    static Map<String, String> dadosItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_adm);
-        getSupportActionBar().setTitle("Itens Solicitáveis");
-        ativar(); // Inicializa os elementos da interface
-
-        pegarChaves(); // Obtém os dados do Firebase e popula as listas
+        setTitle("Itens Solicitáveis");
+        ativar(); // Inicializa os componentes e variáveis
+        recuperarItens(); //resgata os itens do Firebase
+        //pegarChaves(); // Inicia o processo de obtenção de dados do Firebase
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Adapyter adapter = new Adapyter(getApplicationContext(), nomes, Id);
-                listAdm.setAdapter(adapter);
+                ItemAdapter adapter = new ItemAdapter(getApplicationContext(), itens);
+                itensListView.setAdapter(adapter);
             }
-        }, 2000); // Aguarda 5 segundos e depois define o adapter da lista
+        },2000); // Define um atraso de 5 segundos antes de exibir os dados na lista
 
-        listAdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        itensListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                for (int i = 0; i < nomes.size(); i++) {
-                    if (i == position) {
-                        // Preenche o mapa 'dados' com informações do item selecionado
-                        dadosAdm.put("Nome", nomes.get(position));
-                        dadosAdm.put("ID", Id.get(position));
+                // Define os dados selecionados para a próxima atividade
+                dadosItem.put("Nome", itens.get(position).nome);
+                dadosItem.put("ID", itens.get(position).ID);
+                dadosItem.put("Url", itens.get(position).Url);
 
-                        // Abre a tela de DadosAdm com as informações preenchidas
-                        Intent intent = new Intent(getApplicationContext(), DadosAdm.class);
-                        startActivity(intent);
-                    }
-                }
+                Intent intent = new Intent(getApplicationContext(), DadosPedidoUser.class);
+                startActivity(intent);
             }
         });
     }
 
-    // Método para obter as chaves (nomes dos itens) do Firebase
-    private void pegarChaves() {
-        myRef = database.getReference("Item/");
- 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot key : snapshot.getChildren()) {
-                    String nome = key.getKey();
-                    nomes.add(nome);
-
-                    // Para cada nome de item, obtém os dados de cada campo (ID e Quantidade)
-                    for (String campo : campos) {
-                        dadosRef = database.getReference("Item/"
-                                + nome + "/" + campo + "/");
-                        pegarDados(campo); // Obtém os valores dos campos
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Tratamento de erro, se necessário
-            }
-        });
-    }
-
-    // Método para obter os valores dos campos (ID e Quantidade) de cada item
-    private void pegarDados(String campo) {
-        dadosRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String valor = snapshot.getValue(String.class);
-
-                if (campo.equals("ID")) {
-                    Id.add(valor); // Adiciona o ID à lista
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Tratamento de erro, se necessário
-            }
-        });
-    }
-
-    // Método para inicializar elementos da interface e Firebase
+    // Método para inicializar variáveis e objetos
     private void ativar() {
-        listAdm = findViewById(R.id.listItens);
-        nomes = new ArrayList<>();
-        Id = new ArrayList<>();
+        itensListView = findViewById(R.id.listItens) ;
+        itens = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dadosAdm = new HashMap<>();
+        dadosItem = new HashMap<>();
+    }
+
+    public void recuperarItens(){
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("/Item/");
+        itens = new ArrayList<ItemDTO>();
+
+        // Listener para capturar quando um novo pedido for adicionado ao nó "/Item/"
+        ChildEventListener childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                // Converter o DataSnapshot para um objeto PedidoDTO
+                ItemDTO novoPedido = dataSnapshot.getValue(ItemDTO.class);
+                novoPedido.nome = dataSnapshot.getKey();
+                itens.add(novoPedido);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                // Este método é chamado quando os detalhes de um pedido existente forem alterados
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                // Este método é chamado quando um pedido for removido
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                // Este método é chamado quando a ordem dos pedidos for alterada
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Este método é chamado em caso de erro na leitura dos dados
+
+            }
+        };
+
+        ref.addChildEventListener(childEventListener);
+
     }
 
     // Método para lidar com o clique do botão "Adicionar Item"
@@ -134,12 +120,13 @@ public class HomeAdm extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // Método para lidar com o clique do botão "Sair"
-    public void btnSair(View view) {
+    // Método para voltar para a atividade principal
+    public void btnSair(View view){
         Intent intent = new Intent(getApplicationContext(), Main.class);
-        startActivity(intent);
+        startActivity(intent); // Volta para a atividade principal
     }
 
+    // Método para abrir a atividade de listagem de pedidos
     public void visualizarPedidos(View view){
         Intent intent = new Intent(getApplicationContext(), ListagemPedidos.class);
         startActivity(intent);

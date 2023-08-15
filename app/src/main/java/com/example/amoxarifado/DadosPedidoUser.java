@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,18 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DadosUser extends AppCompatActivity {
-    Map<String, String> dadosItem; // Declaração de uma variável do tipo Map para armazenar os dados do contato
-    TextView nomeItem, idItem; // Declaração das variáveis TextView para exibir os dados do contato
+
+public class DadosPedidoUser extends AppCompatActivity {
+
+    ImageView imagemItem; //Imagem
+    Map<String, String> dadosItem; // Declaração de uma variável do tipo Map para armazenar os dados do item
+    TextView nomeItem, idItem; // Declaração das variáveis TextView para exibir os dados do item
     FirebaseAuth mAuth; // Variável para autenticação do Firebase
     FirebaseDatabase database; // Variável para o banco de dados do Firebase
     DatabaseReference myRef;
     EditText quantidadeItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,11 @@ public class DadosUser extends AppCompatActivity {
         dadosItem = HomeUser.dadosItem; // Obtém os dados do contato da tela HomeUser
         nomeItem = findViewById(R.id.nomeItem); // Obtém a referência do TextView para o nome do contato
         idItem =  findViewById(R.id.idItem);
+        imagemItem = findViewById(R.id.imagemItem);
+
+        Picasso.get()
+                .load(HomeUser.dadosItem.get("Url")).into(imagemItem);
+
         quantidadeItem = (EditText) findViewById(R.id.quantidadeItem);
         mAuth = FirebaseAuth.getInstance(); // Inicializa o Firebase Authentication
         database = FirebaseDatabase.getInstance(); // Inicializa o Firebase Database

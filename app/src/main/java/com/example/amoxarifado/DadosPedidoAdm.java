@@ -5,6 +5,7 @@ package com.example.amoxarifado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,12 +17,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.util.Map;
 
 // Definição da classe DadosAdm que estende a classe AppCompatActivity
-public class DadosAdm extends AppCompatActivity {
+public class DadosPedidoAdm extends AppCompatActivity {
     // Declaração de variáveis
+    ImageView imagemItem; //Imagem
     Map<String, String> dadosContatosAdm;
     TextView NomeAdm, IdAdm;
     FirebaseAuth mAuth;
@@ -48,9 +51,13 @@ public class DadosAdm extends AppCompatActivity {
 
     // Inicializa os componentes da interface
     private void iniciarComponentes() {
-        dadosContatosAdm = HomeAdm.dadosAdm; // Obter dados do contato da classe HomeAdm
+        dadosContatosAdm = HomeAdm.dadosItem; // Obter dados do contato da classe HomeAdm
         NomeAdm = findViewById(R.id.NomeAdm);
         IdAdm = findViewById(R.id.IdAdm);
+        imagemItem = findViewById(R.id.imagemItem);
+        Picasso.get()
+                .load(HomeUser.dadosItem.get("Url")).into(imagemItem);
+
         mAuth = FirebaseAuth.getInstance(); // Obter instância de autenticação do Firebase
         database = FirebaseDatabase.getInstance(); // Obter instância do banco de dados do Firebase
     }

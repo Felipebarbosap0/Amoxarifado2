@@ -5,27 +5,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
-public class Adapyter extends BaseAdapter {
+public class ItemAdapter extends BaseAdapter {
 
     // O contexto é necessário para inflar as views.
     Context context;
 
-    // Listas que armazenam os dados que serão exibidos.
-    List<String> Nome;
-
-    List<String> Id;
-
     // Usado para inflar as views a partir do layout XML.
     LayoutInflater inflater;
+    List<ItemDTO> itens;
 
     // Construtor do adaptador.
-    public Adapyter(Context context, List<String> nome, List<String> id){
+    public ItemAdapter(Context context, List<ItemDTO> itens){
         this.context = context;
-        this.Nome = nome;
-        this.Id = id;
+        this.itens = itens;
 
 
         // O LayoutInflater é usado para criar instâncias de layout a partir de um arquivo XML.
@@ -35,7 +34,7 @@ public class Adapyter extends BaseAdapter {
     // Retorna o número de elementos na lista.
     @Override
     public int getCount() {
-        return Nome.size();
+        return itens.size();
     }
 
     // Retorna o item na posição especificada. Não é utilizado aqui.
@@ -54,15 +53,18 @@ public class Adapyter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Infla a view a partir do layout XML.
-        convertView = inflater.inflate(R.layout.adapyter, null);
+        convertView = inflater.inflate(R.layout.item_adapter, null);
 
         // Obtém referências para os elementos de texto na view.
         TextView nometv = convertView.findViewById(R.id.textViewNome);
         TextView idtv = convertView.findViewById(R.id.textViewId);
+        ImageView imagemItem = convertView.findViewById(R.id.imagemItem);
 
         // Define os valores dos elementos de texto com base nos dados da lista.
-        nometv.setText(Nome.get(position));
-        idtv.setText(Id.get(position));
+        nometv.setText(itens.get(position).nome);
+        idtv.setText(itens.get(position).ID);
+        Picasso.get()
+                .load(itens.get(position).Url).into(imagemItem);
 
         // Retorna a view completa para ser exibida na lista.
         return convertView;
