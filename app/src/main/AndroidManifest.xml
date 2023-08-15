@@ -25,7 +25,7 @@
             android:name=".DadosPedidoUser"
             android:exported="false" />
         <activity
-            android:name=".DadosPedidoAdm"
+            android:name=".EdicaoItemAdm"
             android:exported="false" />
         <activity
             android:name=".HomeUser"

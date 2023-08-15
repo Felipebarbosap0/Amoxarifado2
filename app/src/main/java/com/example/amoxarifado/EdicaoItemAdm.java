@@ -22,11 +22,11 @@ import com.squareup.picasso.Picasso;
 import java.util.Map;
 
 // Definição da classe DadosAdm que estende a classe AppCompatActivity
-public class DadosPedidoAdm extends AppCompatActivity {
+public class EdicaoItemAdm extends AppCompatActivity {
     // Declaração de variáveis
     ImageView imagemItem; //Imagem
-    Map<String, String> dadosContatosAdm;
-    TextView NomeAdm, IdAdm;
+    Map<String, String> dadosItem;
+    TextView nomeItem, idItem;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference deleteRef;
@@ -40,31 +40,30 @@ public class DadosPedidoAdm extends AppCompatActivity {
 
         iniciarComponentes(); // Inicializar componentes da interface
 
-        mostrarContato(); // Exibir os detalhes do contato
+        exibirDadosItemSelecionado(); // Chama o método para exibir os detalhes do do item na tela
     }
 
     // Exibe os detalhes do contato nos campos de texto
-    private void mostrarContato() {
-        NomeAdm.setText(dadosContatosAdm.get("Nome")); // Define o ID do contato no TextView correspondente
-        IdAdm.setText(dadosContatosAdm.get("Id")); // Define o ID do contato no TextView correspondente
+    private void exibirDadosItemSelecionado() {
+        nomeItem.setText(dadosItem.get("Nome")); // Define o nome do contato no TextView correspondente
+        idItem.setText(dadosItem.get("ID")); // Define o ID do contato no TextView correspondente
+        Picasso.get()
+                .load(dadosItem.get("Url")).into(imagemItem);
     }
 
     // Inicializa os componentes da interface
     private void iniciarComponentes() {
-        dadosContatosAdm = HomeAdm.dadosItem; // Obter dados do contato da classe HomeAdm
-        NomeAdm = findViewById(R.id.NomeAdm);
-        IdAdm = findViewById(R.id.IdAdm);
+        dadosItem = HomeAdm.dadosItem; // Obter dados do contato da classe HomeAdm
+        nomeItem = findViewById(R.id.nomeAdm);
+        idItem = findViewById(R.id.idAdm);
         imagemItem = findViewById(R.id.imagemItem);
-        Picasso.get()
-                .load(HomeUser.dadosItem.get("Url")).into(imagemItem);
-
         mAuth = FirebaseAuth.getInstance(); // Obter instância de autenticação do Firebase
         database = FirebaseDatabase.getInstance(); // Obter instância do banco de dados do Firebase
     }
 
     // Método para apagar um item do banco de dados
     public void apagar(View view) {
-        deleteRef = database.getReference("Item/" + dadosContatosAdm.get("Nome") + "/");
+        deleteRef = database.getReference("Item/" + dadosItem.get("Nome") + "/");
 
         // Remover o valor do banco de dados e adicionar um ouvinte para completar a operação
         deleteRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {

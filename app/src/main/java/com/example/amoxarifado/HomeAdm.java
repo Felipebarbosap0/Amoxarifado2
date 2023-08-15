@@ -56,7 +56,7 @@ public class HomeAdm extends AppCompatActivity {
                 dadosItem.put("ID", itens.get(position).ID);
                 dadosItem.put("Url", itens.get(position).Url);
 
-                Intent intent = new Intent(getApplicationContext(), DadosPedidoUser.class);
+                Intent intent = new Intent(getApplicationContext(), EdicaoItemAdm.class);
                 startActivity(intent);
             }
         });

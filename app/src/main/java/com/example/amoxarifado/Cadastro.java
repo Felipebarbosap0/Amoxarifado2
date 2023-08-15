@@ -67,7 +67,7 @@ public class Cadastro extends AppCompatActivity {
                 String dominio = parts[1]; // Pega a parte do domínio
 
                 // Verifica se o domínio é "senai.com"
-                if (dominio.equals("senai.com")) {
+                if (dominio.equals("adm.com")) {
                     Toast.makeText(getApplicationContext(),
                             "E-mail corporativo. Usuários com email corporativo devem ser cadastrados pela própria organização.",
                             Toast.LENGTH_LONG).show();

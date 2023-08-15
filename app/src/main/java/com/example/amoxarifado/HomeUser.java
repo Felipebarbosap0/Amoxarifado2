@@ -31,6 +31,7 @@ public class HomeUser extends AppCompatActivity {
     DatabaseReference myRef,dadosRef;
     static Map<String, String> dadosItem;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +67,9 @@ public class HomeUser extends AppCompatActivity {
     private void ativar() {
         itensListView = findViewById(R.id.listItens) ;
         itens = new ArrayList<>();
+        dadosItem = new HashMap<>();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        dadosItem = new HashMap<>();
     }
 
     public void recuperarItens(){

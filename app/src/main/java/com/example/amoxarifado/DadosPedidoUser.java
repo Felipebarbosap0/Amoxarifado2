@@ -50,10 +50,8 @@ public class DadosPedidoUser extends AppCompatActivity {
         nomeItem = findViewById(R.id.nomeItem); // Obtém a referência do TextView para o nome do contato
         idItem =  findViewById(R.id.idItem);
         imagemItem = findViewById(R.id.imagemItem);
-
         Picasso.get()
                 .load(HomeUser.dadosItem.get("Url")).into(imagemItem);
-
         quantidadeItem = (EditText) findViewById(R.id.quantidadeItem);
         mAuth = FirebaseAuth.getInstance(); // Inicializa o Firebase Authentication
         database = FirebaseDatabase.getInstance(); // Inicializa o Firebase Database
